@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { ArrowRight, BriefcaseBusiness, UserRound, Video, Award, Building, Users, FolderSearch } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, UserRound, Video, Award, Building, Users, FolderSearch, Briefcase } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import Navbar from '@/components/Navbar';

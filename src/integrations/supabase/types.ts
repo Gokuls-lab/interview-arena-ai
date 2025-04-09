@@ -9,7 +9,245 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      applications: {
+        Row: {
+          application_date: string
+          id: string
+          interview_date: string | null
+          interview_status: string | null
+          job_id: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          application_date?: string
+          id?: string
+          interview_date?: string | null
+          interview_status?: string | null
+          job_id: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          application_date?: string
+          id?: string
+          interview_date?: string | null
+          interview_status?: string | null
+          job_id?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applications_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "applications_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interviews: {
+        Row: {
+          application_id: string
+          candidate_id: string
+          chat_history: Json | null
+          feedback: string | null
+          id: string
+          job_id: string
+          recording_url: string | null
+          scheduled_date: string
+          status: string
+        }
+        Insert: {
+          application_id: string
+          candidate_id: string
+          chat_history?: Json | null
+          feedback?: string | null
+          id?: string
+          job_id: string
+          recording_url?: string | null
+          scheduled_date: string
+          status?: string
+        }
+        Update: {
+          application_id?: string
+          candidate_id?: string
+          chat_history?: Json | null
+          feedback?: string | null
+          id?: string
+          job_id?: string
+          recording_url?: string | null
+          scheduled_date?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interviews_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interviews_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "interviews_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      jobs: {
+        Row: {
+          company: string
+          description: string
+          id: string
+          location: string
+          posted_by: string
+          posted_date: string
+          requirements: string[]
+          salary: string | null
+          title: string
+          type: string
+        }
+        Insert: {
+          company: string
+          description: string
+          id?: string
+          location: string
+          posted_by: string
+          posted_date?: string
+          requirements: string[]
+          salary?: string | null
+          title: string
+          type: string
+        }
+        Update: {
+          company?: string
+          description?: string
+          id?: string
+          location?: string
+          posted_by?: string
+          posted_date?: string
+          requirements?: string[]
+          salary?: string | null
+          title?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "jobs_posted_by_fkey"
+            columns: ["posted_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mock_interviews: {
+        Row: {
+          chat_history: Json | null
+          end_time: string | null
+          feedback: string | null
+          id: string
+          recording_url: string | null
+          role: string
+          score: number | null
+          start_time: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          chat_history?: Json | null
+          end_time?: string | null
+          feedback?: string | null
+          id?: string
+          recording_url?: string | null
+          role: string
+          score?: number | null
+          start_time?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          chat_history?: Json | null
+          end_time?: string | null
+          feedback?: string | null
+          id?: string
+          recording_url?: string | null
+          role?: string
+          score?: number | null
+          start_time?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mock_interviews_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          resume_url: string | null
+          role: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          id: string
+          name: string
+          resume_url?: string | null
+          role: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          resume_url?: string | null
+          role?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

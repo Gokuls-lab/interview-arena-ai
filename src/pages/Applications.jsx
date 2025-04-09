@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -22,6 +21,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import Navbar from '@/components/Navbar';
 import { useAuth } from '@/contexts/AuthContext';
@@ -188,7 +188,6 @@ const Applications = () => {
     return matchesSearch && matchesStatus && matchesJob;
   });
   
-  // Count applications by status
   const countByStatus = {
     all: applications.length,
     applied: applications.filter(app => app.status === 'applied').length,
@@ -216,7 +215,6 @@ const Applications = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Sidebar - Status Filters */}
           <div className="lg:col-span-1">
             <Card>
               <CardHeader>
@@ -286,9 +284,7 @@ const Applications = () => {
             </Card>
           </div>
           
-          {/* Main Content */}
           <div className="lg:col-span-3 space-y-6">
-            {/* Search and Filter */}
             <Card>
               <CardContent className="pt-6">
                 <div className="flex flex-col md:flex-row gap-4">
@@ -322,7 +318,6 @@ const Applications = () => {
               </CardContent>
             </Card>
             
-            {/* Applications List */}
             {isLoading ? (
               <div className="text-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-interview-primary mx-auto"></div>
@@ -425,7 +420,6 @@ const Applications = () => {
         </div>
       </div>
       
-      {/* Application Details Dialog */}
       {selectedApplication && (
         <Dialog open={!!selectedApplication} onOpenChange={() => setSelectedApplication(null)}>
           <DialogContent className="sm:max-w-md">
@@ -545,7 +539,6 @@ const Applications = () => {
         </Dialog>
       )}
       
-      {/* Schedule Interview Dialog */}
       {schedulingApplication && (
         <Dialog open={!!schedulingApplication} onOpenChange={() => setSchedulingApplication(null)}>
           <DialogContent className="sm:max-w-md">

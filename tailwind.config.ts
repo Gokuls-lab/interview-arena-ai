@@ -4,10 +4,10 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{js,jsx}",
-		"./components/**/*.{js,jsx}",
-		"./app/**/*.{js,jsx}",
-		"./src/**/*.{js,jsx}",
+		"./pages/**/*.{js,jsx,ts,tsx}",
+		"./components/**/*.{js,jsx,ts,tsx}",
+		"./app/**/*.{js,jsx,ts,tsx}",
+		"./src/**/*.{js,jsx,ts,tsx}",
 	],
 	prefix: "",
 	theme: {
@@ -64,10 +64,10 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				interview: {
-					primary: '#1d4ed8',
-					secondary: '#2563eb',
-					accent: '#3b82f6',
-					light: '#eff6ff'
+					primary: 'hsl(var(--interview-primary))',
+					secondary: 'hsl(var(--interview-secondary))',
+					accent: 'hsl(var(--interview-accent))',
+					light: 'hsl(var(--interview-light))'
 				}
 			},
 			borderRadius: {
@@ -100,13 +100,33 @@ export default {
 					'0%': { opacity: 0.5 },
 					'50%': { opacity: 1 },
 					'100%': { opacity: 0.5 }
+				},
+				'float': {
+					'0%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0px)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'slide-in-right': {
+					'0%': { transform: 'translateX(100%)' },
+					'100%': { transform: 'translateX(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-slow': 'pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-				'recording': 'recording 2s ease-in-out infinite'
+				'recording': 'recording 2s ease-in-out infinite',
+				'float': 'float 3s ease-in-out infinite',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'slide-in-right': 'slide-in-right 0.3s ease-out'
+			},
+			boxShadow: {
+				'soft': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+				'glow': '0 0 15px rgba(99, 102, 241, 0.5)'
 			}
 		}
 	},

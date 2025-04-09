@@ -43,6 +43,11 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 221.2 83.2% 53.3%;
+
+    --interview-primary: 235 75% 40%;
+    --interview-secondary: 230 70% 50%;
+    --interview-accent: 220 90% 60%;
+    --interview-light: 225 100% 97%;
   }
 
   .dark {
@@ -82,6 +87,11 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --interview-primary: 235 80% 60%;
+    --interview-secondary: 230 75% 65%;
+    --interview-accent: 220 95% 70%;
+    --interview-light: 225 20% 20%;
   }
 }
 
@@ -92,11 +102,12 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 }
 
 .gradient-bg {
-  background: linear-gradient(to right, #3b82f6, #2563eb);
+  background: linear-gradient(to right, #4338ca, #3b82f6);
 }
 
 .recording-indicator {
@@ -112,4 +123,85 @@
   background-color: #ef4444;
   margin-right: 8px;
   animation: recording 2s ease-in-out infinite;
+}
+
+@keyframes recording {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hover-shadow {
+  transition: all 0.3s ease;
+}
+
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-gradient {
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #4338ca, #3b82f6);
+}
+
+/* Enhance form elements */
+input, select, textarea {
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200;
+}
+
+button {
+  @apply transition-all duration-200;
+}
+
+/* Fix for radio buttons */
+.radix-radio-group-item {
+  @apply text-indigo-600 focus:ring-indigo-500;
+}
+
+/* Fix for select dropdowns */
+.radix-select-content {
+  @apply bg-white border border-gray-200 shadow-lg z-50;
+}
+
+/* Ensure dropdown menus appear on top */
+[data-radix-popper-content-wrapper] {
+  @apply z-50 !important;
 }

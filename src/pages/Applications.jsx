@@ -54,7 +54,7 @@ const Applications = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [jobFilter, setJobFilter] = useState('');
+  const [jobFilter, setJobFilter] = useState('all');
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [interviewDate, setInterviewDate] = useState('');
   const [interviewTime, setInterviewTime] = useState('');
@@ -183,7 +183,7 @@ const Applications = () => {
       app.company?.toLowerCase().includes(searchQuery.toLowerCase());
     
     const matchesStatus = !statusFilter || app.status === statusFilter;
-    const matchesJob = !jobFilter || app.jobId === parseInt(jobFilter);
+    const matchesJob = jobFilter === 'all' || app.jobId === parseInt(jobFilter);
     
     return matchesSearch && matchesStatus && matchesJob;
   });
@@ -305,7 +305,7 @@ const Applications = () => {
                         <SelectValue placeholder="Filter by job" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Jobs</SelectItem>
+                        <SelectItem value="all">All Jobs</SelectItem>
                         {jobs.map((job) => (
                           <SelectItem key={job.id} value={job.id.toString()}>
                             {job.title}

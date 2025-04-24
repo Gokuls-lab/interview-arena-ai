@@ -1,9 +1,9 @@
-
 // This is a mock API service that simulates backend interactions
 // In a real application, these functions would make actual API calls
+import Data from '@/services/fetchdata';
 
 // Mock data for jobs
-const mockJobs = [
+const mockJobs1 = [
   {
     id: 1,
     title: "Senior Frontend Developer",
@@ -60,6 +60,8 @@ const mockJobs = [
   }
 ];
 
+const mockJobs=await Data.fetchJobData();
+
 // Mock data for applications
 let mockApplications = [
   {
@@ -107,7 +109,7 @@ const API = {
     
     getById: async (id) => {
       await delay(500);
-      const job = mockJobs.find(job => job.id === parseInt(id));
+      const job = mockJobs.find(job => job.id === id);
       if (!job) throw new Error("Job not found");
       return { ...job };
     },
@@ -125,7 +127,7 @@ const API = {
 
     update: async (id, jobData) => {
       await delay(1000);
-      const index = mockJobs.findIndex(job => job.id === parseInt(id));
+      const index = mockJobs.findIndex(job => job.id === id);
       if (index === -1) throw new Error("Job not found");
       
       mockJobs[index] = { ...mockJobs[index], ...jobData };
@@ -134,7 +136,7 @@ const API = {
 
     delete: async (id) => {
       await delay(800);
-      const index = mockJobs.findIndex(job => job.id === parseInt(id));
+      const index = mockJobs.findIndex(job => job.id === id);
       if (index === -1) throw new Error("Job not found");
       
       mockJobs.splice(index, 1);
@@ -154,12 +156,12 @@ const API = {
     
     getByJob: async (jobId) => {
       await delay(500);
-      return mockApplications.filter(app => app.jobId === parseInt(jobId));
+      return mockApplications.filter(app => app.jobId === jobId);
     },
     
     getById: async (id) => {
       await delay(500);
-      const application = mockApplications.find(app => app.id === parseInt(id));
+      const application = mockApplications.find(app => app.id === id);
       if (!application) throw new Error("Application not found");
       return { ...application };
     },
@@ -178,7 +180,7 @@ const API = {
 
     updateStatus: async (id, status) => {
       await delay(800);
-      const index = mockApplications.findIndex(app => app.id === parseInt(id));
+      const index = mockApplications.findIndex(app => app.id === id);
       if (index === -1) throw new Error("Application not found");
       
       mockApplications[index] = { 
@@ -203,7 +205,7 @@ const API = {
     
     getById: async (id) => {
       await delay(500);
-      const interview = mockInterviews.find(interview => interview.id === parseInt(id));
+      const interview = mockInterviews.find(interview => interview.id === id);
       if (!interview) throw new Error("Interview not found");
       return { ...interview };
     },
@@ -230,7 +232,7 @@ const API = {
 
     updateStatus: async (id, status, data = {}) => {
       await delay(800);
-      const index = mockInterviews.findIndex(interview => interview.id === parseInt(id));
+      const index = mockInterviews.findIndex(interview => interview.id === id);
       if (index === -1) throw new Error("Interview not found");
       
       mockInterviews[index] = { 
@@ -243,16 +245,17 @@ const API = {
 
     saveChatHistory: async (id, messages) => {
       await delay(500);
-      const index = mockInterviews.findIndex(interview => interview.id === parseInt(id));
+      const index = mockInterviews.findIndex(interview => interview.id === id);
       if (index === -1) throw new Error("Interview not found");
       
-      mockInterviews[index].chatHistory = messages;
-      return mockInterviews[index];
+      // Ensure we're not mutating the original messages array
+      mockInterviews[index].chatHistory = [...messages];
+      return { ...mockInterviews[index] };
     },
 
     saveRecording: async (id, recordingUrl) => {
       await delay(1000);
-      const index = mockInterviews.findIndex(interview => interview.id === parseInt(id));
+      const index = mockInterviews.findIndex(interview => interview.id === id);
       if (index === -1) throw new Error("Interview not found");
       
       mockInterviews[index].recordingUrl = recordingUrl;

@@ -1,4 +1,3 @@
-
 // This service simulates the interaction with Gemini AI for interviews
 
 class AIInterviewService {
@@ -109,7 +108,8 @@ class AIInterviewService {
   // Process a candidate's response and get the next question
   async processResponse(response) {
     if (!this.currentSession) {
-      throw new Error('No active interview session');
+      // If no session exists, create one with software-developer as default
+      this.startSession('software-developer');
     }
     
     // Record the response
@@ -136,11 +136,26 @@ class AIInterviewService {
     
     // Check if all questions have been asked
     if (this.currentSession.currentQuestionIndex >= this.currentSession.questions.length) {
-      return this.generateFollowUpOrEnd();
+      const endResponse = this.generateFollowUpOrEnd();
+      return {
+        type: 'end',
+        text: endResponse.text || "Thank you for your time. Do you have any questions for me?"
+      };
     } else {
       // Return the next question
       const nextQuestion = this.currentSession.questions[this.currentSession.currentQuestionIndex];
       this.questionHistory.push(nextQuestion);
+      
+      // Randomly choose between a direct question and a follow-up
+      const shouldAskFollowUp = Math.random() < 0.3;
+      if (shouldAskFollowUp) {
+        const followUp = this.followUpResponses[Math.floor(Math.random() * this.followUpResponses.length)];
+        return {
+          type: 'question',
+          text: followUp,
+          isLastQuestion: false
+        };
+      }
       
       return {
         type: 'question',

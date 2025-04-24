@@ -22,6 +22,8 @@ import Applications from "./pages/Applications";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+
+import AIInterview from './pages/AIInterview';
 const App = () => {
   // Create a new QueryClient instance within the component
   // This ensures it's created during rendering

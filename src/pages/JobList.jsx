@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -28,7 +27,7 @@ const JobList = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState(null);
   const [jobType, setJobType] = useState('');
   const [savedJobs, setSavedJobs] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
@@ -87,7 +86,7 @@ const JobList = () => {
   
   const clearFilters = () => {
     setSearchQuery('');
-    setLocation('');
+    setLocation(null);
     setJobType('');
   };
   
@@ -154,12 +153,11 @@ const JobList = () => {
                 
                 <div className="space-y-2">
                   <Label>Location</Label>
-                  <Select value={location} onValueChange={setLocation}>
+                  <Select value={location || undefined} onValueChange={setLocation}>
                     <SelectTrigger>
                       <SelectValue placeholder="Any location" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Any location</SelectItem>
                       {locations.map(loc => (
                         <SelectItem key={loc} value={loc}>{loc}</SelectItem>
                       ))}
@@ -245,12 +243,11 @@ const JobList = () => {
                   </div>
                   
                   <div className="md:w-1/4">
-                    <Select value={location} onValueChange={setLocation}>
+                    <Select value={location || undefined} onValueChange={setLocation}>
                       <SelectTrigger>
                         <SelectValue placeholder="Location" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">Any location</SelectItem>
                         {locations.map(loc => (
                           <SelectItem key={loc} value={loc}>{loc}</SelectItem>
                         ))}

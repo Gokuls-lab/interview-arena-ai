@@ -123,7 +123,9 @@ const JobDetail = () => {
   };
   
   const handleStartInterview = () => {
-    navigate(`/interview/${id}`);
+    // navigate(`http://localhost:3000/?id=${id}&user=${currentUser.id}`);
+    window.location.href=`http://localhost:3000/?id=${id}&user=${currentUser.id}`;
+
   };
   
   const shareJob = async () => {

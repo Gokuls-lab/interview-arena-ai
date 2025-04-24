@@ -40,7 +40,7 @@ export default function Interviews() {
     <>
       <Navbar />
 
-      <h1 className='text-3xl font-bold m-20 ml-[25%]'>Interviews</h1>
+      <h1 className='text-3xl font-bold m-20 ml-[25%]'>Interview Result</h1>
       <div className='flex w-screen justify-center'>
         <div className='bg-white w-1/2 border-zinc-100 border-2 rounded-2xl self-center overflow-y-auto max-h-[70vh]'>
           {data && data.map((i, index) => (

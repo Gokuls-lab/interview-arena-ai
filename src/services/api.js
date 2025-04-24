@@ -67,7 +67,7 @@ let mockApplications = [
   {
     id: 1,
     jobId: 1,
-    userId: 2,
+    userId: 1,
     status: "applied",
     applicationDate: "2023-04-15",
     interviewStatus: null,

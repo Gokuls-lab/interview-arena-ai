@@ -21,7 +21,7 @@ import Profile from "./pages/Profile";
 import Applications from "./pages/Applications";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import Interviews from './pages/Interviews.jsx'
 
 import AIInterview from './pages/AIInterview';
 const App = () => {
@@ -108,6 +108,14 @@ const App = () => {
                 element={
                   <ProtectedRoute>
                     <Applications />
+                  </ProtectedRoute>
+                } 
+              />
+                <Route 
+                path="/interviews" 
+                element={
+                  <ProtectedRoute>
+                    <Interviews />
                   </ProtectedRoute>
                 } 
               />

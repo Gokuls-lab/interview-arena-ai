@@ -70,7 +70,7 @@ const Applications = () => {
         setJobs(jobsData);
         
         // Get applications
-        let applicationsData = await API.applications.getAll();
+        let applicationsData = await API.applications.getAll(1);
         
         // If not recruiter, filter to only show current user's applications
         if (!isRecruiter) {

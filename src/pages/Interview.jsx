@@ -489,11 +489,13 @@ Final hiring recommendation
 The interview should be strict, professional, and finished in under 15 minutes, without skipping any step.
 
 Job role applied for:
-Company: Amazon
-Role: Full stack developer`,
+${job}
+`,
   }
 });
 
+// Company: Amazon
+// Role: Full stack developer
   async function getAIResponse(query) {
     const response1 = await chat.sendMessage({
       message: query,

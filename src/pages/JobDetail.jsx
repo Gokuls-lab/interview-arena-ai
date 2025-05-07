@@ -298,7 +298,7 @@ const JobDetail = () => {
                             
                             <Button variant="outline" onClick={handleStartInterview}>
                               <Video className="h-4 w-4 mr-2" />
-                              Practice Interview
+                              Start Interview
                             </Button>
                           </>
                         )
